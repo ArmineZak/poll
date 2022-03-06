@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.epam.model.Text" %><%--
   Created by IntelliJ IDEA.
   User: Armine Zakaryan
   Date: 05.03.2022
@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<% Text result = (Text) request.getAttribute("result"); %>
+<%=  result + ""%>
 </body>
 </html>

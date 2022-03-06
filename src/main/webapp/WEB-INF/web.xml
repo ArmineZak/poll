@@ -4,4 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>ProcessServlet</servlet-name>
+    <servlet-class>com.epam.controller.ProcessServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProcessServlet</servlet-name>
+    <url-pattern>/process</url-pattern>
+  </servlet-mapping>
+
+
+
 </web-app>
