@@ -12,9 +12,8 @@ public class Question extends Entity {
         this.id = id;
     }
 
-    public Question(String text, String pollId) {
+    public Question(String text) {
         this.text = text;
-        this.pollId = pollId;
     }
 
     public Question(int id, String text) {

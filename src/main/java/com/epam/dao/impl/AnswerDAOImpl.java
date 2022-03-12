@@ -18,7 +18,6 @@ public class AnswerDAOImpl implements AnswerDAO {
     private PreparedStatement findAll;
     private PreparedStatement findById;
     private PreparedStatement findTextByQuestionId;
-    private PreparedStatement findAllText;
 
 
     public AnswerDAOImpl() {
@@ -27,7 +26,6 @@ public class AnswerDAOImpl implements AnswerDAO {
             findAll = connection.prepareStatement("SELECT * FROM answer");
             findById = connection.prepareStatement("SELECT * FROM answer WHERE answer_id = ?");
             findTextByQuestionId = connection.prepareStatement("SELECT text FROM answer WHERE question_id = ?");
-            findAllText = connection.prepareStatement("SELECT text FROM answer");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -86,20 +84,6 @@ public class AnswerDAOImpl implements AnswerDAO {
             List<Text> result = new ArrayList<>();
             while (resultSet.next()) {
                 result.add(new Text(resultSet.getString("text")));
-            }
-            return result;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public List<Text> findAllText() {
-        try (ResultSet resultSet = findAllText.executeQuery()) {
-            List<Text> result = new ArrayList<>();
-            while (resultSet.next()) {
-                result.add(new Text(
-                        resultSet.getString("text")));
             }
             return result;
         } catch (SQLException e) {

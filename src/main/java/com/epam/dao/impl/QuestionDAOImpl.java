@@ -2,6 +2,7 @@ package com.epam.dao.impl;
 
 import com.epam.config.DBConnectionProvider;
 import com.epam.dao.QuestionDAO;
+import com.epam.model.Answer;
 import com.epam.model.Question;
 import com.epam.model.Text;
 
@@ -26,9 +27,11 @@ public class QuestionDAOImpl implements QuestionDAO {
         try {
             connection = DBConnectionProvider.getInstance().getConnection();
             findAll = connection.prepareStatement("SELECT question_id, text FROM question");
-            findById = connection.prepareStatement("SELECT question.question_id, answer.text FROM question " +
-                    "JOIN answer ON question.question_id=answer.question_id WHERE question.question_id = ?");
+            findById = connection.prepareStatement("SELECT question.text, answer.text, answer.weight, answer.question_Id " +
+                    " FROM question JOIN answer ON question.question_id=answer.question_id WHERE question.question_id = ?");
             findTextByPollId = connection.prepareStatement("SELECT text FROM question WHERE poll_id = ?");
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,7 +55,7 @@ public class QuestionDAOImpl implements QuestionDAO {
     }
 
     @Override
-    public Map<Integer, List<Text>> findById(Integer id) {
+    public Map<Text, List<Answer>> findById(Integer id) {
         try {
             findById.setInt(1, id);
         } catch (SQLException e) {
@@ -60,12 +63,17 @@ public class QuestionDAOImpl implements QuestionDAO {
             return null;
         }
         try (ResultSet resultSet = findById.executeQuery()) {
-            Map<Integer, List<Text>> result = new HashMap<>();
-            List<Text> answers = new ArrayList<>();
+            Map<Text, List<Answer>> result = new HashMap<>();
+            List<Answer> answers = new ArrayList<>();
+            Text question = new Text();
             while (resultSet.next()) {
-                answers.add(new Text(resultSet.getString("text")));
+                question.setText(resultSet.getString("text"));
+                answers.add(new Answer(
+                        resultSet.getString("answer.text"),
+                        resultSet.getString("weight"),
+                        resultSet.getInt("question_id")));
             }
-            result.put(id, answers);
+            result.put(question, answers);
             return result;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,4 +100,5 @@ public class QuestionDAOImpl implements QuestionDAO {
             return null;
         }
     }
+
 }

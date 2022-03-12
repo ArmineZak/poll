@@ -11,10 +11,11 @@ public class Test {
 //        System.out.println(q.findAll());
 //        System.out.println(q.findByPollId(1));
 
+
 //        AnswerDAOImpl a = new AnswerDAOImpl();
 //        System.out.println(a.findAll());
 //        System.out.println(a.findAllText());
-//        System.out.println(a.findByQuestionId(3));
+//        System.out.println(a.findByQId(1));
 //        System.out.println(a.findById(2));
 
 //        ResultDAOImpl r = new ResultDAOImpl();

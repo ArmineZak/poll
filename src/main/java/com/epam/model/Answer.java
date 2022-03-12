@@ -9,6 +9,11 @@ public class Answer extends Entity {
 
     public Answer() {
     }
+    public Answer( String text, String weight, int questionId) {
+        this.text = text;
+        this.weight = weight;
+        this.questionId = questionId;
+    }
 
     public Answer(int id, String text, String weight, int questionId) {
         this.id = id;
