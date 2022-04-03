@@ -4,6 +4,7 @@ import com.epam.config.DBConnectionProvider;
 import com.epam.dao.ResultDAO;
 import com.epam.model.Result;
 import com.epam.model.Text;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class ResultDAOImpl implements ResultDAO {
 
     private Connection connection;
@@ -68,7 +69,6 @@ public class ResultDAOImpl implements ResultDAO {
                 result.setMinScore(resultSet.getInt("min_score"));
                 result.setMaxScore(resultSet.getInt("max_score"));
                 result.setPollId(resultSet.getInt("poll_id"));
-
             }
             return result;
         } catch (SQLException e) {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Аарон Бек</title>
+</head>
+<body>
+<h1>Пройдите опрос</h1>
+
+<form th:method="GET" th:action="@{/result/Aaron-Beck}">
+    <div>
+        <div th:each="question : ${questions}">
+            <p th:text="${question.getText()}"></p>
+            <div th:each="answer : ${answers}">
+                <div th:if="${question.getId()} == ${answer.getQuestionId()}">
+                    <input th:type="radio" th:text="${answer.getText()}"
+                           th:name="${question.getId()}" th:value="${answer.getWeight()}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+
+
+
+
+
+

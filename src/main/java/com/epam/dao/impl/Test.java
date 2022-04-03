@@ -7,9 +7,9 @@ public class Test {
 //        System.out.println(p.findAll());
 
 //        QuestionDAOImpl q = new QuestionDAOImpl();
-//        System.out.println(q.findById(10));
+//       System.out.println(q.findById(10));
 //        System.out.println(q.findAll());
-//        System.out.println(q.findByPollId(1));
+//       System.out.println(q.findByPollId(1));
 
 
 //        AnswerDAOImpl a = new AnswerDAOImpl();
