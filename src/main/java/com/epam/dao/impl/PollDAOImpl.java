@@ -3,6 +3,7 @@ package com.epam.dao.impl;
 import com.epam.config.DBConnectionProvider;
 import com.epam.dao.PollDAO;
 import com.epam.model.Poll;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Repository
 public class PollDAOImpl implements PollDAO {
 
     private Connection connection;

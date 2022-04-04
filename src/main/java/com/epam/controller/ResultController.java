@@ -22,7 +22,7 @@ public class ResultController {
         this.result = result;
     }
 
-    @GetMapping("/Aaron-Beck")
+    @PostMapping("/Aaron-Beck")
     public String aaronBeckResult(@RequestParam Map<String, String> map,
                                   Model model) {
         int score = 0;
@@ -31,18 +31,7 @@ public class ResultController {
             score += num;
         }
 
-        if (score >= 30 && score <= 63) {
-            text = result.findByScore(30, 63);
-        } else if (score >= 20 && score <= 29) {
-            text = result.findByScore(20, 29);
-        } else if (score >= 16 && score <= 19) {
-            text = result.findByScore(16, 19);
-        } else if (score >= 10 && score <= 15) {
-            text = result.findByScore(10, 15);
-        } else {
-            text = result.findByScore(0, 9);
-        }
-
+        text = result.findByScore(score);
         model.addAttribute("result", text);
         return "result/result";
     }

@@ -4,6 +4,7 @@ import com.epam.config.DBConnectionProvider;
 import com.epam.dao.AnswerDAO;
 import com.epam.model.Answer;
 import com.epam.model.Text;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -12,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-@Service
+@Repository
 public class AnswerDAOImpl implements AnswerDAO {
 
     private Connection connection;

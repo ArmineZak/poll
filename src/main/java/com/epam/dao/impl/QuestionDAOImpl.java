@@ -5,6 +5,7 @@ import com.epam.dao.QuestionDAO;
 import com.epam.model.Answer;
 import com.epam.model.Question;
 import com.epam.model.Text;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Repository
 public class QuestionDAOImpl implements QuestionDAO {
 
     private Connection connection;

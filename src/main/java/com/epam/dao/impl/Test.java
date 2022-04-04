@@ -18,11 +18,12 @@ public class Test {
 //        System.out.println(a.findByQId(1));
 //        System.out.println(a.findById(2));
 
-//        ResultDAOImpl r = new ResultDAOImpl();
+ //    ResultDAOImpl r = new ResultDAOImpl();
 //        System.out.println(r.findAll());
 //        System.out.println(r.findById(3));
 //        System.out.println(r.findByPollId(1));
 //        System.out.println(r.findByScore(10, 15));
+ //       System.out.println(r.findBy(0));
 
     }
 }
