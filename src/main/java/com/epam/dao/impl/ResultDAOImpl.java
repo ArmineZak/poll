@@ -4,6 +4,8 @@ import com.epam.config.DBConnectionProvider;
 import com.epam.dao.ResultDAO;
 import com.epam.model.Result;
 import com.epam.model.Text;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class ResultDAOImpl implements ResultDAO {
 
     private Connection connection;
@@ -21,13 +23,14 @@ public class ResultDAOImpl implements ResultDAO {
     private PreparedStatement findByScore;
 
 
+
     public ResultDAOImpl() {
         try {
             connection = DBConnectionProvider.getInstance().getConnection();
             findAll = connection.prepareStatement("SELECT * FROM result");
             findById = connection.prepareStatement("SELECT * FROM result WHERE result_id = ?");
             findByPollId = connection.prepareStatement("SELECT * FROM result WHERE poll_id = ?");
-            findByScore = connection.prepareStatement("SELECT explanation FROM result WHERE min_score =? AND max_score =?");
+            findByScore = connection.prepareStatement("SELECT explanation FROM result WHERE min_score <=? AND max_score >=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,7 +71,6 @@ public class ResultDAOImpl implements ResultDAO {
                 result.setMinScore(resultSet.getInt("min_score"));
                 result.setMaxScore(resultSet.getInt("max_score"));
                 result.setPollId(resultSet.getInt("poll_id"));
-
             }
             return result;
         } catch (SQLException e) {
@@ -103,10 +105,10 @@ public class ResultDAOImpl implements ResultDAO {
     }
 
     @Override
-    public Text findByScore(Integer minScore, Integer maxScore) {
-        try {
-            findByScore.setInt(1, minScore);
-            findByScore.setInt(2, maxScore);
+    public Text findByScore(Integer score) {
+        try{
+            findByScore.setInt(1, score);
+            findByScore.setInt(2, score);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

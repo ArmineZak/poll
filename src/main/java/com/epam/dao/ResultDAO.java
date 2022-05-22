@@ -10,5 +10,5 @@ public interface ResultDAO {
     List<Result> findAll();
     Result findById(Integer id);
     List<Result> findByPollId(Integer id);
-    Text findByScore(Integer minScore, Integer maxScore);
+    Text findByScore(Integer score);
 }
